@@ -83,24 +83,24 @@ const productCart = [
     basketArray.forEach(function (item, index) {
       itemsHTML += 
       `<div class='row mb-4 shadow p-3 mb-5 bg-body-tertiary rounded d-flex align-items-center'>
-            <div class='col-12 col-md-3'>
-                <img class='image' src='${item.image}'><img>
-            </div>
-        <div class='item-container col-12 col-md-3'>
-            <div class='basket-info'>
-                
-                <p class='title'>${item.name}</p>
-                <p class='price'>Price = $${item.price}</p>
-            </div>
-            </div>
-            
-            <div class='button-container col-12 col-md-3'>
-                <button class='decrease-button bg-danger text-white'>-</button>
-                <p class='quantity'>Quantity x ${item.quantity}</p>
-                <button class='increase-button bg-success'>+</button>
-                <button class='remove-button ms-5' data-index="${index}"><i class="bi bi-trash3 rounded"></i></button>
-            </div>
-       </div>`;
+      <div class='col-12 col-md-3'>
+          <img class='img-fluid' src='${item.image}' alt='Item Image'>
+      </div>
+      <div class='item-container col-12 col-md-3'>
+          <div class='basket-info'>
+              <p class='title'>${item.name}</p>
+              <p class='price'>Price = $${item.price}</p>
+          </div>
+      </div>
+      <div class='button-container col-12 col-md-3'>
+          <button class='btn btn-danger decrease-button'>-</button>
+          <p class='quantity'>Quantity x ${item.quantity}</p>
+          <button class='btn btn-success increase-button'>+</button>
+          <button class='btn btn-secondary remove-button ms-2' data-index="${index}">
+              <i class="bi bi-trash3 rounded"></i>
+          </button>
+      </div>
+  </div>`;
     });
   
     basketItems.innerHTML = itemsHTML;
