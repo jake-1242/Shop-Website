@@ -16,8 +16,6 @@ const productCart = [
   
   let discountFlag = false
   
-  const basketArray=[]
-  const bread='/images'
   const discountForm =document.getElementById("form")
   const itemContainer = document.getElementById("item-container")
   const addButtons = document.getElementsByClassName('add-button')
@@ -26,10 +24,24 @@ const productCart = [
   const subtotal =document.getElementById('subtotal')
   const openBasket=document.getElementById('basket-button')
   const closeBasket=document.getElementById('close-basket-button')
+
+const basketArray=[]
+
+  // Basket badge
+  const badgeAmount=document.getElementById('badge-amount')
+
   
-  
-  
-  
+  let itemCount= 0
+
+ function badgeIncrease(){
+  itemCount++
+  badgeAmount.textContent = itemCount
+ }
+ function badgeDecrease(){
+  itemCount--
+  badgeAmount.textContent = itemCount
+ }
+
   
   // modal functions
   
@@ -49,11 +61,11 @@ const productCart = [
   function render(){
   let itemsHTML =""
   productCart.forEach(function(item,index){
-  itemsHTML += `<div class='item shadow p-3 mb-5 bg-body-tertiary rounded d-flex flex-column align-items-center'>
+  itemsHTML += `<div class='item shadow p-3 mb-5 rounded d-flex flex-column align-items-center'>
         <img class='image' src='${item.image}'><img>
         <p class='title'>${item.name}</p>
         <p class='price'>$${item.price}</p>
-        <button class='add-button btn bg-dark text-white' id="${index}">Add to basket</button>
+        <button class='add-button' id="${index}">Add to basket</button>
       </div>`
   })
   itemContainer.innerHTML = itemsHTML
@@ -74,6 +86,7 @@ const productCart = [
   basketArray[this.id] = productCart[this.id]
   }
   console.log(productCart[this.id])
+  badgeIncrease()
   renderCart()
   // note for self , 'this' in a function refers to the event 
   }
@@ -124,16 +137,23 @@ const productCart = [
       btn.addEventListener('click', increaseItemQuantity);
       }
     cartCalculator(basketArray); 
-  }
+  
+}
   
   
   function removeItemFromCart() {
     const index = this.getAttribute('data-index');
     
+    const currentQuantity =basketArray[index].quantity
+    itemCount -= currentQuantity
+
+    
+
     basketArray[index].quantity = 1;
    
     basketArray.splice(index, 1);
-  
+
+    badgeAmount.textContent = itemCount
     renderCart();
   }
   
@@ -146,6 +166,7 @@ const productCart = [
     }else{
       basketArray.splice(index, 1);
     }
+    badgeDecrease()
     renderCart()
     cartCalculator(basketArray);  
   }
@@ -156,7 +177,7 @@ const productCart = [
     const index= element.getAttribute('data-index')
     
     basketArray[index].quantity++;
-    
+    badgeIncrease()
     renderCart()
     cartCalculator(basketArray);  
   }
@@ -173,7 +194,9 @@ const productCart = [
       console.log(basketArray);
   });
   basketArray.length=0
-    renderCart(); 
+  itemCount= 0
+  badgeAmount.textContent = itemCount
+  renderCart(); 
   }
   
   // subtotal calculator
@@ -195,28 +218,32 @@ const productCart = [
   
   function cartDiscountCalculator(event){
     event.preventDefault()
-    for(let i=0;i < productCart.length;i++){
-      let itemSum=(productCart[i].quantity * productCart[i].price)
-      if(input.value ==="food" && discountFlag === false &&productCart[i].type==="food" ){
-   
-        const percentageDiscount= (itemSum/100)*20;
-        productCart[i].price -= percentageDiscount
-        productCart[i].price =productCart[i].price.toFixed(2)
-        displayAlert('Discount Applied','valid')
-        }else{
-            
-            displayAlert('Invalid Code Entered','invalid')
+    
+      
+
+      if(input.value=="food" && discountFlag===false){
+        for(let i=0;i < productCart.length;i++){
+          if(productCart[i].type==="food"){
+            let itemSum= productCart[i].price
+            const percentageDiscount= (itemSum/100)*20;
+            productCart[i].price -= percentageDiscount
+            productCart[i].price =productCart[i].price.toFixed(2)
+          }
         }
-      } 
-    renderCart()
-    input.value="";
-    discountFlag= true
-  }
-  
+      displayAlert('Discount Applied','valid')
+      discountFlag=true
+      }else{
+      displayAlert('Invalid code','invalid')
+      }
+
+      renderCart()
+      input.value="";
+    }
 // Alert  
 
   function displayAlert(text, action) {
     discountCheck.textContent = text;
+
     discountCheck.classList.add(`alert-${action}`);
 
 
@@ -225,5 +252,3 @@ const productCart = [
       discountCheck.classList.remove(`alert-${action}`);
     }, 1000);
   }
-  
-  

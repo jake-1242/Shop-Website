@@ -10,11 +10,11 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg bg-dark ">
+    <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand text-white ms-5" href="#"><h1>Barry's</h1></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon text"><i class="bi bi-list text-white"></i></span>
+          <span class=" text"><i class="bi bi-list text-white"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -28,12 +28,15 @@
               <a class="nav-link text-white" href="#">Home</a>
             </li>
           </ul>
-          <button id="basket-button"  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="bi bi-cart4"></i>
-          </button>
           
-        
         </div>
+        <button id="basket-button"  type="button" class="btn btn-success position-relative" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="bi bi-cart4"></i>
+          <span id="badge-amount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            0
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
       </div>
     </nav>
     <div class='discount-code'>
