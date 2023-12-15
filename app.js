@@ -27,6 +27,8 @@ const productCart = [
 
 const basketArray=[]
 
+const originalPrices = productCart.map(function(item){return item.price})
+console.log('These are the original prices' + originalPrices)
   // Basket badge
   const badgeAmount=document.getElementById('badge-amount')
 
