@@ -6,8 +6,13 @@ body{
 
 
 /* header */
+
+h1{
+    font-family: kalam,sans-serif;
+    font-weight: 700;
+}
 nav{
-    background:linear-gradient(180deg,rgb(30, 70, 146)35% ,rgb(9, 75, 105)95%);
+    background:linear-gradient(180deg,rgb(30, 108, 238)30% ,rgb(48, 96, 179)95%);
 }
 #nav{
     text-decoration: none;
@@ -38,23 +43,20 @@ nav{
   
 
 /* main */
-#main{
-margin: 5px;
-}
 
 
 /* items */
-button{
-    border-radius: 20px;
-    background-color: rgb(30, 70, 146);
+.add-button{
+    border-radius:50px;
+    background-color: rgb(39, 108, 238);
     padding: 5px 10px;
     color: white;
     border: none;
 }
 
-button:active{
+.add-button:active{
     background-color: rgb(13, 39, 87);
-    border-radius: 10px;
+   
 }
 
 #item-container{
@@ -67,10 +69,10 @@ button:active{
 }
 
 .item{
-    padding:20px;
-    width:250px;
+    padding:20px 0px;
+    width:200px;
     height:250px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  
 }
 
 .image{
@@ -100,6 +102,7 @@ button:active{
     display: flex;
     flex-direction: column;
 }
+
 .basketItemsList{
     padding:10px;  
     gap:10px;
@@ -124,24 +127,14 @@ button:active{
 .decrease-button{
     color: rgb(0, 0, 0);
     background-color: rgb(199, 97, 97);
-    border: none;
-    border-radius: 2px;
-    box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.658);
-    padding: 6px 15px;
+
 }
 .decrease-button:active{
     color: rgb(0, 0, 0);
     background-color: rgb(145, 6, 6);
-    border: none;
-    border-radius: 2px;
-    box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.658);
-    padding: 6px 15px;
+
 }
 
-.remove-button{
-    background-color: #55555500;
-    color: black;
-}
 /* basket subtotal */
 
 .basket-subtotal{
@@ -189,25 +182,23 @@ button:active{
 
 
 /* checkout buttons  */
-.checkout-buttons{
-    display: block;
+.checkout-buttons{ 
+    gap: 5px;
 }
 
 #checkout{
     width: 200px;
 }
-#clear{
-    width: 200px;
-    background-color: rgb(199, 97, 97);
+
+.remove-button{
+    height: 50px;
+    width: 50px;
 }
-#clear:active{
-    width: 200px;
-    background-color:rgb(145, 6, 6);
-}
+
 .alert-invalid{
     padding: 5px 0px ;
     text-align: center;
-    background-color:rgb(199, 97, 97);
+    background-color:red;
     width: 100%;
     height: 35px;
     color: white;
@@ -244,9 +235,16 @@ button:active{
     margin-top: 50px; 
 }
 
+#discount-check{
+    visibility: visible;
+    display: block;
+    height: 35px;
+    width: 100%;
+}
+
 .visible{
     visibility:hidden;
-    display:none;
+    display: block;
 }
 
 /* Close button */

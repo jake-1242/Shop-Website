@@ -1,8 +1,8 @@
 const productCart = [
     { name: "Bread", type: "food", quantity: 1, price: 0.85,image:"https://i.ibb.co/34nxDwf/Bread.png"},
-    { name: "Apples", type: "food", quantity: 1, price: 0.5,image:"https://i.ibb.co/ZWZ7BkJ/Apples.png" },
-    { name: "Mushrooms", type: "food", quantity: 1, price: 0.1,image:"https://i.ibb.co/hy7Fnq2/mushrooms.png" },
-    { name: "Beer", type: "alcohol", quantity: 1, price: 1,image:"https://i.ibb.co/ftJKmvq/Beer-Bottle.png" },
+    { name: "Apples", type: "food", quantity: 1, price: 0.50,image:"https://i.ibb.co/ZWZ7BkJ/Apples.png" },
+    { name: "Mushrooms", type: "food", quantity: 1, price: 0.10,image:"https://i.ibb.co/hy7Fnq2/mushrooms.png" },
+    { name: "Beer", type: "alcohol", quantity: 1, price: 1.00,image:"https://i.ibb.co/ftJKmvq/Beer-Bottle.png" },
     { name: "Wine", type: "alcohol", quantity: 1, price: 8.99,image:"https://i.ibb.co/fpsdTVb/wine.png"},
     { name: "Steak", type: "food", quantity: 1, price:4,image:"https://i.ibb.co/g6CLFQL/Steak.png" },
     { name: "Blue Cheese", type: "food", quantity: 1, price: 2.99,image:"https://i.ibb.co/M5XYMPR/blue-cheese.png"},
@@ -10,7 +10,7 @@ const productCart = [
     { name: "Cheesecake", type: "food", quantity: 1, price: 4.99,image:"https://i.ibb.co/JBr64P8/cheesecake.png"},
     { name: "Chopping Board", type: "home", quantity: 1, price: 1.99,image:"https://i.ibb.co/zfFbthC/Chopping-board.png"},
     { name: "Bananas", type: "food", quantity: 1, price: 4.99,image:"https://i.ibb.co/tCd4xXT/Bannas.png"},
-    { name: "Onions", type: "food", quantity: 1, price: 0.4 ,image:"https://i.ibb.co/6HShYz5/abhishek-hajare-D9h2-Rx-M1r-E-unsplash.jpg"}
+    { name: "Onions", type: "food", quantity: 1, price: 0.40,image:"https://i.ibb.co/6HShYz5/abhishek-hajare-D9h2-Rx-M1r-E-unsplash.jpg"}
   ];
   
   
@@ -79,11 +79,11 @@ function resetPrices()
   function render(){
   let itemsHTML =""
   productCart.forEach(function(item,index){
-  itemsHTML += `<div class='item shadow p-3 mb-5 rounded d-flex flex-column align-items-center'>
+  itemsHTML += `<div class='item shadow mb-5 rounded d-flex flex-column align-items-center'>
         <img class='image' src='${item.image}'><img>
         <p class='title'>${item.name}</p>
-        <p class='price'>$${item.price}</p>
-        <button class='add-button' id="${index}">Add to basket</button>
+        <p class='price'>£${item.price}</p>
+        <button class='add-button rounded' id="${index}">Add to basket</button>
       </div>`
   })
   itemContainer.innerHTML = itemsHTML
@@ -113,24 +113,23 @@ function resetPrices()
     let itemsHTML = "";
     basketArray.forEach(function (item, index) {
       itemsHTML += 
-      `<div class='row mb-4 shadow p-3 mb-5 bg-body-tertiary rounded d-flex align-items-center'>
+      `<div class='row mb-4 mx-2 shadow p-3 bg-body-tertiary rounded d-flex align-items-center position-relative'>
       <div class='col-12 col-md-3'>
           <img class='img-fluid' src='${item.image}' alt='Item Image'>
       </div>
-      <div class='item-container col-12 col-md-3'>
+      <div class='item-container col-12 col-md-2'>
           <div class='basket-info'>
               <p class='title'>${item.name}</p>
-              <p class='price'>Price = $${item.price}</p>
+              <p class='price'>Price = £${item.price}</p>
           </div>
       </div>
       <div class='button-container col-12 col-md-3'>
           <button class='btn btn-danger decrease-button'>-</button>
           <p class='quantity'>Quantity x ${item.quantity}</p>
           <button class='btn btn-success increase-button'>+</button>
-          <button class='btn btn-secondary remove-button ms-2' data-index="${index}">
-              <i class="bi bi-trash3 rounded"></i>
-          </button>
+          <button class='btn remove-button position-absolute top-0 end-0 btn-close me-3 mt-3' data-index="${index}"></button>
       </div>
+     
   </div>`;
     });
   
