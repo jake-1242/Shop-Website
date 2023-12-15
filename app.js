@@ -28,7 +28,23 @@ const productCart = [
 const basketArray=[]
 
 const originalPrices = productCart.map(function(item){return item.price})
+
 console.log('These are the original prices' + originalPrices)
+
+
+const resetButton =document.getElementById('reset-button')
+
+resetButton.addEventListener('click',resetPrices)
+
+function resetPrices()
+{
+  for(let i=0;i<productCart.length;i++){
+    productCart[i].price=originalPrices[i]
+  }
+  displayAlert('Discount Removed', 'removed');
+  discountFlag = false;
+  renderCart()
+}
   // Basket badge
   const badgeAmount=document.getElementById('badge-amount')
 
@@ -248,9 +264,10 @@ console.log('These are the original prices' + originalPrices)
 
     discountCheck.classList.add(`alert-${action}`);
 
-
+    
     setTimeout(function () {
       discountCheck.textContent = '';
       discountCheck.classList.remove(`alert-${action}`);
     }, 1000);
-  }
+  
+}
